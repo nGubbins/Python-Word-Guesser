@@ -7,10 +7,9 @@ guessed = False
 
 currentWord = "testingdefault"
 wordList = ["apple", "banana", "coriander", "durian", "eggplant", "fettucine", "garnish", "hamburger", "juice", "orange", "lemon", "pineapple"]
-alreadyGuessed = [""]
+alreadyGuessed = []
 
 guess = ""
-guessCorrect = False
 
 guessLimit = 12
 guessCount = 0
@@ -21,8 +20,7 @@ def get_guess():
     displayGuessed = "Already guessed: "
     if(len(alreadyGuessed) > 0):
         for previousGuess in alreadyGuessed:
-            if(not previousGuess == ""):
-                displayGuessed = displayGuessed + previousGuess + ", " 
+            displayGuessed = displayGuessed + previousGuess + ", " 
         print(displayGuessed)
     guess = input("You have " + str(guessLimit - guessCount) + " guesses left.\nGuess a letter or a word: ")
     guess = guess.lower()
@@ -31,7 +29,6 @@ def get_guess():
 
 #checks full word or individual character
 def check_guess():
-    global guessCorrect
     guessCorrect = False
     if(guess == currentWord):
         print("\nYou Win!  The word was: " + guess + "\n")
@@ -74,7 +71,7 @@ def display_results():
 
 #GAME LOOP
 while(playing):
-    alreadyGuessed = [""]
+    alreadyGuessed = []
     guessed = False
     guess = ""
     guessCount = 0
@@ -84,15 +81,16 @@ while(playing):
     print("\nWord selected.\n")
     display_results()
 
-    while(not guessed): #loop to run while the word is not guessed
+    #loop to run while the word is not guessed
+    while(not guessed):
         get_guess()
         check_guess()
         display_results()
         if(guessCount >= guessLimit and not guessed):
-            print("Max Guesses reached.  You failed.")
+            print("Max guesses reached.  You failed.")
             guessed = True
 
-    #exit
+    #exit/retry
     retry = input("Input [r] to try again\nPress [enter] or input any other key to exit.\n")
     if(retry == "r"):
         print("\nRESTARTING\n")
