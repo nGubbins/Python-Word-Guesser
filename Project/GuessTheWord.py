@@ -17,8 +17,8 @@ guessCount = 0
 #get user input to check
 def get_guess():
     global guess
-    displayGuessed = "Already guessed: "
     if(len(alreadyGuessed) > 0):
+        displayGuessed = "Already guessed: "
         for previousGuess in alreadyGuessed:
             displayGuessed = displayGuessed + previousGuess + ", " 
         print(displayGuessed)
@@ -87,7 +87,7 @@ while(playing):
         check_guess()
         display_results()
         if(guessCount >= guessLimit and not guessed):
-            print("Max guesses reached.  You failed.")
+            print("Max guesses reached.  You failed.\n")
             guessed = True
 
     #exit/retry
